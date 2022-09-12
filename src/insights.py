@@ -1,4 +1,4 @@
-from src.jobs import read
+from jobs import read
 
 
 def get_unique_job_types(path):
@@ -60,7 +60,19 @@ def get_unique_industries(path):
     list
         List of unique industries
     """
-    return []
+    jobs_list = read(path)
+    unique_industry_list = []
+
+    for jobs in jobs_list:
+        industries = jobs["industry"]
+        if industries not in unique_industry_list and industries != "":
+            unique_industry_list.append(industries)
+        # else:
+        #     unique_industry_list[jobs["industry"]] = 1
+    # del unique_industry_list[" "]
+    # REMOVER OS QUE TEM ESPAÇOS VAZIOS
+    # Ao invés de fazer um dictionary, fiz um list pra poder verificar
+    return unique_industry_list
 
 
 def filter_by_industry(jobs, industry):
