@@ -122,7 +122,8 @@ def get_max_salary(path):
         except Exception:
             pass
     return max_salary
-# except Exception tirado de https://stackoverflow.com/questions/54948548/what-is-wrong-with-using-a-bare-except
+# except Exception tirado de
+# https://stackoverflow.com/questions/54948548/what-is-wrong-with-using-a-bare-except
 
 
 def get_min_salary(path):
