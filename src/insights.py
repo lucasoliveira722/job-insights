@@ -2,20 +2,6 @@ from src.jobs import read
 
 
 def get_unique_job_types(path):
-    """Checks all different job types and returns a list of them
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique job types
-    """
     jobs_list = read(path)
     unique_job_list = dict()
 
@@ -28,38 +14,14 @@ def get_unique_job_types(path):
 
 
 def filter_by_job_type(jobs, job_type):
-    """Filters a list of jobs by job_type
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    job_type : str
-        Job type for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided job_type
-    """
-    return []
+    filtered_jobs = []
+    for item in jobs:
+        if item["job_type"] == job_type:
+            filtered_jobs.append(item)
+    return filtered_jobs
 
 
 def get_unique_industries(path):
-    """Checks all different industries and returns a list of them
-
-    Must call `read`
-
-    Parameters
-    ----------
-    path : str
-        Must be passed to `read`
-
-    Returns
-    -------
-    list
-        List of unique industries
-    """
     jobs_list = read(path)
     unique_industry_list = []
 
@@ -67,11 +29,6 @@ def get_unique_industries(path):
         industries = jobs["industry"]
         if industries not in unique_industry_list and industries != "":
             unique_industry_list.append(industries)
-        # else:
-        #     unique_industry_list[jobs["industry"]] = 1
-    # del unique_industry_list[" "]
-    # REMOVER OS QUE TEM ESPAÇOS VAZIOS
-    # Ao invés de fazer um dictionary, fiz um list pra poder verificar
     return unique_industry_list
 
 
@@ -99,8 +56,6 @@ def get_max_salary(path):
 
     for jobs in jobs_list:
         max_salary_in_list = jobs["max_salary"]
-        # if int(max_salary_in_list) > max_salary:
-        #     max_salary = max_salary_in_list
         try:
             conv = int(max_salary_in_list)
             if conv > max_salary:
